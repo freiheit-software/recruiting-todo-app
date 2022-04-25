@@ -1,3 +1,3 @@
 export class ListToDo {
-	static readonly type = '[ToDoInterface] ListToDos';
+	static readonly type = '[ToDoInterface] ListToDo';
 }

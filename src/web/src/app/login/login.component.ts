@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
+
+import { ListToDo } from 'src/shared/stores/todo.action';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+	selector: 'app-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+	constructor (private store: Store) { }
 
-  ngOnInit(): void {
-  }
+	ngOnInit (): void {
+		this.store.dispatch(new ListToDo());
+	}
 
 }
