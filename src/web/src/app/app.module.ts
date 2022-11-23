@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -13,11 +14,12 @@ import { environment } from 'src/environments/environment';
 	declarations: [ AppComponent ],
 	imports: [
 		AppRoutingModule,
+		BrowserAnimationsModule,
 		BrowserModule,
 		CommonModule,
 		HttpClientModule,
+		NgxsLoggerPluginModule.forRoot({ disabled: environment.production }),
 		NgxsModule.forRoot(),
-		NgxsLoggerPluginModule.forRoot({ disabled: environment.production })
 	],
 	providers: [],
 	bootstrap: [ AppComponent ]

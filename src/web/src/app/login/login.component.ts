@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize, tap } from 'rxjs';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../auth/auth.service';
 import { IUser } from 'src/shared/todo.types';
@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
 
 	submit () {
 		const loginInfo: IUser = this.loginForm.value;
+		console.log('loginInfo', loginInfo);
 		this.isLoading = true;
 		this.authService.login(loginInfo).pipe(
 			tap({
