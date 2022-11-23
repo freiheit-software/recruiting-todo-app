@@ -10,7 +10,7 @@ export class AuthService {
 
 	constructor () { }
 
-	isLoggedIn (): boolean { return false; }
+	isLoggedIn (): boolean { return true; }
 
 	getAuthToken (): string { return 'random-alphanumeric-text'; }
 
