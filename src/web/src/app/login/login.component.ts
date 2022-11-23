@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize, tap } from 'rxjs';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
@@ -16,7 +16,7 @@ import { ListToDo } from 'src/shared/stores/todo.action';
 })
 export class LoginComponent implements OnInit {
 
-	loginForm!: FormGroup;
+	loginForm!: UntypedFormGroup;
 	isLoading = false;
 
 	constructor (
@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
 
 	ngOnInit (): void {
 		this.store.dispatch(new ListToDo());
-		this.loginForm = new FormGroup({
-			username: new FormControl('', [Validators.required, Validators.email]),
-			password: new FormControl('', [Validators.required])
+		this.loginForm = new UntypedFormGroup({
+			username: new UntypedFormControl('', [Validators.required, Validators.email]),
+			password: new UntypedFormControl('', [Validators.required])
 		});
 	}
 
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 		this.isLoading = true;
 		this.authService.login(loginInfo).pipe(
 			tap({
-				next: _ => { this.router.navigate(['/home']); },
+				next: () => { this.router.navigate(['/home']); },
 				error: (err: HttpErrorResponse) => { alert('error with login request'); }
 			}),
 			finalize(() => this.isLoading = false)
